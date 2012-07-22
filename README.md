@@ -21,11 +21,12 @@ phash = Grayphash.image_phash('./pics/1.jpg')   # => 16162904659988308473
 
 Calculate similarity:
 ```
-similarity = 1 - (Grayphash.hamming(Grayphash.image_phash('./pics/4.jpg'), 		Grayphash.image_phash('./pics/3.jpg')).to_f)/64   # => 0.90625
+similarity = 1 - (Grayphash.hamming(Grayphash.image_phash('./pics/4.jpg'), 	
+ 	Grayphash.image_phash('./pics/3.jpg')).to_f)/64   # => 0.90625
 ```
 
 # Stable alternatives
 
-* pHash gem[pHash gem](https://github.com/toy/pHash/)
-* Phashion gem[Phashion gem](https://github.com/mperham/phashion/)
+* [pHash gem](https://github.com/toy/pHash/)
+* [Phashion gem](https://github.com/mperham/phashion/)
 
