@@ -40,4 +40,4 @@ similarity = 1 - a.hamming(a.phash,
 
 * GPL3 for this wrapper.
 * GPL3 for pHash code: see more at [pHash site](http://phash.org/licensing/)
-* GNU GPL, GNU LPGL for CImg library: see more  at [CIimg FAQ](http://cimg.sourceforge.net/reference/group__cimg__faq.html#ssf15)
+* GNU GPL, GNU LPGL for CImg library: see more  at [cimg FAQ](http://cimg.sourceforge.net/reference/group__cimg__faq.html#ssf15)
