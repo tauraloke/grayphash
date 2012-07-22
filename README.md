@@ -27,8 +27,8 @@ Calculate similarity:
 ```
 a = Grayphash.new(('./pics/3.jpg')
 b = Grayphash.new(('./pics/4.jpg')
-similarity = 1 - (Grayphash.new(('./pics/4.jpg'), 	
- 	Grayphash.image_phash('./pics/3.jpg')).to_f)/64   # => 0.90625
+similarity = 1 - a.hamming(a.phash, 	
+ 	b.phash).to_f)/64   # => 0.90625
 ```
 
 # Stable alternatives
