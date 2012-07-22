@@ -18,7 +18,7 @@
 
     extern "C" VALUE t_about(VALUE self)
     {
-        return rb_str_new_cstr("pHash 0.9.4. Copyright 2008-2010 Aetilius, Inc. Included only some image functions (grayphash v-0.0.4.3).");
+        return rb_str_new_cstr("pHash 0.9.4. Copyright 2008-2010 Aetilius, Inc. Included only some image functions (grayphash v-0.0.7).");
     }
 
 
@@ -97,8 +97,8 @@
 
 
     extern "C" VALUE t_hamming(VALUE self, VALUE phash1, VALUE phash2) {
-        Check_Type(phash1, T_BIGNUM);
-        Check_Type(phash2, T_BIGNUM);
+        //Check_Type(phash1, T_BIGNUM);
+        //Check_Type(phash2, T_BIGNUM);
 
         ulong64 hash1 = rb_num2ull(phash1);
         ulong64 hash2 = rb_num2ull(phash2);
