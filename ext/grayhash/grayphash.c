@@ -21,7 +21,7 @@ void Init_grayphash() {
 	rb_define_method(Grayphash, "close", method_close, 0);
     rb_define_method(Grayphash, "image_phash", &method_image_phash, -1);
     rb_define_method(Grayphash, "hamming", &method_hamming, -1);
-  	sdl_library = dlopen("/usr/lib/libpHash.so", RTLD_LAZY);
+  	//sdl_library = dlopen("/usr/lib/libpHash.so", RTLD_LAZY);
 }
 
 VALUE method_hamming(int argc, VALUE * argv, VALUE self) {
@@ -30,12 +30,17 @@ VALUE method_hamming(int argc, VALUE * argv, VALUE self) {
     }
 	unsigned long long hash1 = rb_num2ull(argv[0]);
 	unsigned long long hash2 = rb_num2ull(argv[1]);
-	int* (*phash_func)();
-	phash_func = dlsym(sdl_library, "ph_hamming_distance");
 
-	return INT2FIX(
-	  ((*phash_func)(hash1, hash2))
-	  );
+
+    ulong64 x = hash1^hash2;
+    const ulong64 m1  = 0x5555555555555555ULL;
+    const ulong64 m2  = 0x3333333333333333ULL;
+    const ulong64 h01 = 0x0101010101010101ULL;
+    const ulong64 m4  = 0x0f0f0f0f0f0f0f0fULL;
+    x -= (x >> 1) & m1;
+    x = (x & m2) + ((x >> 2) & m2);
+    x = (x + (x >> 4)) & m4;
+    return INT2FIX((x * h01)>>56);
 }
 
 
@@ -60,7 +65,9 @@ VALUE method_close(VALUE self) {
 }
 
 VALUE method_about(VALUE self) {
-	char* (*about)();
-	about = dlsym(sdl_library, "ph_about");
-	return rb_str_new_cstr((*about)());
+	return rb_str_new_cstr("pHash 0.9.4. Copyright 2008-2010 Aetilius, Inc. Included only some image functions (grayphash v-0.0.4).");
+	//char* (*about)();
+	//about = dlsym(sdl_library, "ph_about");
+	
+	//return rb_str_new_cstr((*about)());
 }
