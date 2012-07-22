@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = 'grayphash'
-  s.version = '0.0.1'
+  s.version = '0.0.2'
   s.description = %q{pHash image wrapper}
   s.email = %q{tauraloke@gmail.com}
   s.summary = %q{Simple wrapper for some pHash image functions}

@@ -21,7 +21,7 @@ void Init_grayphash() {
 	rb_define_method(Grayphash, "close", method_close, 0);
     rb_define_method(Grayphash, "image_phash", &method_image_phash, -1);
     rb_define_method(Grayphash, "hamming", &method_hamming, -1);
-  	sdl_library = dlopen("libpHash.so", RTLD_LAZY);
+  	sdl_library = dlopen("/usr/lib/libpHash.so", RTLD_LAZY);
 }
 
 VALUE method_hamming(int argc, VALUE * argv, VALUE self) {
