@@ -19,17 +19,23 @@ Compiling can take some minutes (0.5 - 2 minutes): slow CImg is slow.
 Calculcate perceptive hash for image: 
 ```
 require 'grayphash'
-phash = Grayphash.new('./pics/1.jpg').phash   # => 16162904659988308473
+phash = Grayphash.phash('./pics/1.jpg')   # => 16162904659988308473
+phash = phash('./pics/1.jpg')   # => 16162904659988308473
 
 ```
 
 Calculate similarity:
 ```
-a = Grayphash.new(('./pics/3.jpg')
-b = Grayphash.new(('./pics/4.jpg')
-similarity = 1 - a.hamming(a.phash, 	
- 	b.phash).to_f)/64   # => 0.90625
+a = './pics/3.jpg'
+b = './pics/4.jpg'
+similarity = 1 - Grayphash.hamming(phash(a), phash(b)).to_f / 64   # => 0.90625
 ```
+
+# How it works
+Grayphash is small ruby module which contains some methods from pHash library.
+* `about()`               # returns info string about version.
+* `phash(image_path)`     # calculate 64-bits perceptive hash for image. 
+* `hamming(hash1, hash2)` # returns hamming distance between two numbers.
 
 # Stable alternatives
 

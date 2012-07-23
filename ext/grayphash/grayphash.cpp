@@ -8,17 +8,10 @@
     typedef VALUE (ruby_method)(...);
     typedef unsigned long long ulong64;
 
-    extern "C" VALUE t_init(VALUE self, VALUE file)
-    {
-		Check_Type(file, T_STRING);
-        rb_iv_set(self, "@file", file);
-
-        return self;
-    }
 
     extern "C" VALUE t_about(VALUE self)
     {
-        return rb_str_new_cstr("pHash 0.9.4. Copyright 2008-2010 Aetilius, Inc. Included only some image functions (grayphash v-0.0.7).");
+        return rb_str_new_cstr("pHash 0.9.4. Copyright 2008-2010 Aetilius, Inc. Included only some image functions (grayphash v-0.0.8).");
     }
 
 
@@ -80,14 +73,14 @@
         return 0;
     }
 
-    extern "C" VALUE t_phash(VALUE self) {
-        VALUE lfile = rb_iv_get(self, "@file");
+    extern "C" VALUE t_phash(VALUE self, VALUE lfile) {
+        Check_Type(lfile, T_STRING);
         char* file = RSTRING_PTR(lfile);
         ulong64 phash = 0;
         ph_dct_imagehash(file, phash);
 
         if(phash==0)
-            rb_raise(rb_eFatal, "PHash cannot be 0 but it calcutaled as it. Probably you load PNG file with transparency.");
+            rb_raise(rb_eFatal, "PHash cannot be 0 but it calcutaled as it. Probably you load PNG file with transparency or this file is not exists.");
         
         rb_iv_set(self, "@phash", ULL2NUM(phash));
 
@@ -119,10 +112,9 @@
 
     extern "C" void Init_grayphash() 
     {
-        Grayphash = rb_define_class("Grayphash", rb_cObject);
-        rb_define_method(Grayphash, "initialize", (ruby_method*) &t_init, 1);
+        Grayphash = rb_define_module("Grayphash");
         rb_define_method(Grayphash, "about", (ruby_method*) &t_about, 0);
-        rb_define_method(Grayphash, "phash", (ruby_method*) &t_phash, 0);
+        rb_define_method(Grayphash, "phash", (ruby_method*) &t_phash, 1);
         rb_define_method(Grayphash, "hamming", (ruby_method*) &t_hamming, 2);
     }
 
