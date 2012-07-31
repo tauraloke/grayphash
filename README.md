@@ -4,6 +4,7 @@ Grayphash is unstable simple gem for some functions from pHash library.
 
 * Ruby
 * CImg library
+* Imagemagick for more stability
 
 # How to get
 
@@ -13,6 +14,11 @@ sudo apt-get install cimg-dev
 sudo gem install grayphash
 ```
 Compiling can take some minutes (0.5 - 2 minutes): slow CImg is slow.
+
+
+Windows example:
+You can use MinGW (it's just in ruby kit for windows). You also need Imagemagick if you want to use this gem. (Try static imagemagick version).
+And you need big library file CImg.h (just find it and copy to `%mingwpath%/include/`).
 
 # How to use
 
