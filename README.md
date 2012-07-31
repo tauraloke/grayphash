@@ -17,7 +17,7 @@ Compiling can take some minutes (0.5 - 2 minutes): slow CImg is slow.
 
 
 Windows example:
-You can use MinGW (it's just in ruby kit for windows). You also need Imagemagick if you want to use this gem. (Try static imagemagick version).
+You can use MinGW (it's just in ruby kit for windows). You also need Imagemagick if you want to use this gem.
 And you need big library file CImg.h (just find it and copy to `%mingwpath%/include/`).
 
 # How to use
